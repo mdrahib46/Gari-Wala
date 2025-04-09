@@ -1,5 +1,7 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
+import 'package:gariwala/presentation/ui/screens/car_list_screen.dart';
+import 'package:gariwala/utils/asset_path.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -20,7 +22,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               flex: 2,
               child: Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/images/onboarding.png'), fit: BoxFit.fill),
+                  image: DecorationImage(image: AssetImage(AssetPath.onboardingImage), fit: BoxFit.fill),
                 ),
               ),
             ),
@@ -40,7 +42,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 24),
-                    SizedBox(width: 340, height: 48, child: ElevatedButton(onPressed: () {}, child: Text("Let\'s Go"))),
+                    SizedBox(width: 340, height: 48, child: ElevatedButton(onPressed: () {
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> CarListScreen()), (route)=> false);
+                    }, child: Text("Let's Go"))),
                     const SizedBox(height: 16),
                   ],
                 ),
