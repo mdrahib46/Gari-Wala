@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gariwala/presentation/ui/screens/MapsDetailsScreen.dart';
 import 'package:gariwala/presentation/ui/screens/car_details_screen.dart';
 import 'package:gariwala/presentation/ui/screens/onboarding_page.dart';
 
@@ -14,7 +15,7 @@ class GariWala extends StatelessWidget {
         elevatedButtonTheme: _elevatedButtonThemeData(),
       ),
 
-      home: CarDetailsScreen(),
+      home: MapsDetailsScreen(),
     );
   }
 

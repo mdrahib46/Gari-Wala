@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gariwala/data/model/car_models.dart' show Car;
 import 'package:gariwala/presentation/widgets/car_card.dart';
 import 'package:gariwala/utils/cars.dart';
 
 class CarListScreen extends StatelessWidget {
   const CarListScreen({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {

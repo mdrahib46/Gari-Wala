@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gariwala/data/model/car_models.dart';
+import 'package:gariwala/presentation/ui/screens/car_details_screen.dart';
 import 'package:gariwala/utils/asset_path.dart';
 
 class CarCard extends StatelessWidget {
@@ -11,7 +12,7 @@ class CarCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('object');
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> CarDetailsScreen(car: car,)));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
