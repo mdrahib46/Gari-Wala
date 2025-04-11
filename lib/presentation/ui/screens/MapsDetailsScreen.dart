@@ -93,6 +93,11 @@ Widget carDetailCard(Car car) {
             ),
           ],
         ),
+        Column(
+          children: [
+            Text('This is the demo text for car specification')
+          ],
+        )
       ],
     ),
   );
