@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gariwala/data/model/car_models.dart';
+import 'package:gariwala/presentation/ui/screens/MapsDetailsScreen.dart';
 import 'package:gariwala/presentation/widgets/car_card.dart';
 import 'package:gariwala/presentation/widgets/more_card.dart';
 import 'package:gariwala/utils/asset_path.dart';
@@ -72,21 +73,26 @@ class CarDetailsScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 24),
                     Expanded(
-                      child: Container(
-                        height: 170,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          image: DecorationImage(
-                            image: AssetImage(AssetPath.mapImage),
-                            fit: BoxFit.cover,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 10,
-                              spreadRadius: 5,
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> MapsDetailsScreen(car: car,)));
+                        },
+                        child: Container(
+                          height: 170,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            image: DecorationImage(
+                              image: AssetImage(AssetPath.mapImage),
+                              fit: BoxFit.cover,
                             ),
-                          ],
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10,
+                                spreadRadius: 5,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

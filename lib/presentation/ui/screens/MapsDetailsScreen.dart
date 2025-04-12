@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:gariwala/data/model/car_models.dart' show Car;
-import 'package:gariwala/presentation/ui/screens/car_list_screen.dart';
-import 'package:gariwala/utils/cars.dart';
+import 'package:gariwala/data/model/car_models.dart';
+import 'package:gariwala/presentation/widgets/features_icons.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapsDetailsScreen extends StatelessWidget {
-  const MapsDetailsScreen({super.key});
+  const MapsDetailsScreen({super.key, required this.car});
+  final Car car;
 
   @override
   Widget build(BuildContext context) {
-    // Example car for demonstration. You can pass this dynamically as needed.
-  final CarsList car;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -40,7 +37,8 @@ class MapsDetailsScreen extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: carDetailCard(CarsList.cars[0]),
+            child: carDetailCard(car: car),
+
           ),
         ],
       ),
@@ -48,57 +46,121 @@ class MapsDetailsScreen extends StatelessWidget {
   }
 }
 
-Widget carDetailCard(Car car) {
-  return Container(
-    height: 350,
-    width: double.infinity,
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-    decoration: BoxDecoration(
-      color: Colors.black54,
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(30),
-        topRight: Radius.circular(30),
+Widget carDetailCard({required Car car}) {
+  return Stack(
+    children: [
+      Container(
+        height: 380,
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        decoration: BoxDecoration(
+          color: Colors.black54,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          boxShadow: [
+            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 20),
+            Text(
+              car.model,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Icon(Icons.directions_car, color: Colors.white, size: 16),
+                SizedBox(width: 8),
+                Text(
+                  '${car.distance} km',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                ),
+                SizedBox(width: 10),
+                Icon(Icons.battery_full, color: Colors.white, size: 14),
+                SizedBox(width: 5),
+                Text(
+                  '${car.fuelCapacity} L',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-      boxShadow: [
-        BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 20),
-        Text(
-          car.model,
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+      Positioned(
+        bottom: 0,
+        left: 0,
+        right: 0,
+        child: Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
             color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Features",
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              featuresIcons(),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '\$${car.pricePerHour}/Day',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const Spacer(),
+                  SizedBox(
+                    width: 120,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
+                      child: Text(
+                        "Book Now",
+                        style: TextStyle(
+                          color: Colors.white,
+                          wordSpacing: 0.9,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Icon(Icons.directions_car, color: Colors.white, size: 16),
-            SizedBox(width: 8),
-            Text(
-              '${car.distance} km',
-              style: TextStyle(color: Colors.white, fontSize: 14),
-            ),
-            SizedBox(width: 10),
-            Icon(Icons.battery_full, color: Colors.white, size: 14),
-            SizedBox(width: 5),
-            Text(
-              '${car.fuelCapacity} L',
-              style: TextStyle(color: Colors.white, fontSize: 14),
-            ),
-          ],
-        ),
-        Column(
-          children: [
-            Text('This is the demo text for car specification')
-          ],
-        )
-      ],
-    ),
+      ),
+    ],
   );
 }
+
+
+

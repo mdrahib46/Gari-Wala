@@ -9,13 +9,13 @@ class GariWala extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: _textThemeData(),
         appBarTheme: _appBarThemeData(),
         elevatedButtonTheme: _elevatedButtonThemeData(),
       ),
-
-      home: MapsDetailsScreen(),
+      home: OnboardingScreen(),
     );
   }
 
