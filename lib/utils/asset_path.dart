@@ -7,4 +7,5 @@ class AssetPath{
   static const String pumpImage = '$_imagePath/pump.png';
   static const String userProfile = '$_imagePath/user.png';
   static const String mapImage = '$_imagePath/maps.png';
+  static const String white_car = '$_imagePath/white_car.png';
 }

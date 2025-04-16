@@ -43,7 +43,7 @@ Widget featureIcon({
     child: Column(
       children: [
         Icon(icon, size: 24),
-        Text(title),
+        FittedBox(child: Text(title)),
         Text(subTitle, style: TextStyle(fontSize: 10, color: Colors.grey)),
       ],
     ),
