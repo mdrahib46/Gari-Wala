@@ -7,10 +7,33 @@ import 'package:gariwala/utils/asset_path.dart';
 
 
 
-class CarDetailsScreen extends StatelessWidget {
+class CarDetailsScreen extends StatefulWidget {
   const CarDetailsScreen({super.key, required this.car});
 
   final Car car;
+
+  @override
+  State<CarDetailsScreen> createState() => _CarDetailsScreenState();
+}
+
+class _CarDetailsScreenState extends State<CarDetailsScreen>  with TickerProviderStateMixin{
+
+  AnimationController? _animationController;
+  Animation<double>? _animation;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(duration: Duration(seconds: 3), vsync: this);
+
+    _animation = Tween<double>(begin: 1.0, end: 1.5).animate(_animationController!)..addListener((){
+      setState(() {
+
+      });
+    });
+
+    _animationController?.forward();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +54,10 @@ class CarDetailsScreen extends StatelessWidget {
             children: [
               CarCard(
                 car: Car(
-                  model: car.model,
-                  distance: car.distance,
-                  fuelCapacity: car.fuelCapacity,
-                  pricePerHour: car.pricePerHour,
+                  model: widget.car.model,
+                  distance: widget.car.distance,
+                  fuelCapacity: widget.car.fuelCapacity,
+                  pricePerHour: widget.car.pricePerHour,
                 ),
               ),
 
@@ -75,7 +98,7 @@ class CarDetailsScreen extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> MapsDetailsScreen(car: car,)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> MapsDetailsScreen(car: widget.car,)));
                         },
                         child: Container(
                           height: 170,
@@ -93,6 +116,14 @@ class CarDetailsScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Transform.scale(
+                              scale: _animation!.value,
+                              alignment: Alignment.center,
+                              child: Image.asset(AssetPath.mapImage,fit: BoxFit.cover,),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -105,28 +136,28 @@ class CarDetailsScreen extends StatelessWidget {
                   children: [
                     MoreCard(
                       car:  Car(
-                        model: "${car.model} - 1",
-                        distance: car.distance+100,
-                        fuelCapacity: car.fuelCapacity,
-                        pricePerHour: car.pricePerHour+10,
+                        model: "${widget.car.model} - 1",
+                        distance: widget.car.distance+100,
+                        fuelCapacity: widget.car.fuelCapacity,
+                        pricePerHour: widget.car.pricePerHour+10,
                       ),
                     ),
                     const SizedBox(height: 4),
                     MoreCard(
                       car:  Car(
-                        model: '${car.model} - 2',
-                        distance: car.distance+200,
-                        fuelCapacity: car.fuelCapacity,
-                        pricePerHour: car.pricePerHour+20,
+                        model: '${widget.car.model} - 2',
+                        distance: widget.car.distance+200,
+                        fuelCapacity: widget.car.fuelCapacity,
+                        pricePerHour: widget.car.pricePerHour+20,
                       ),
                     ),
                     const SizedBox(height: 4),
                     MoreCard(
                       car:  Car(
-                        model: '${car.model} - 3',
-                        distance: car.distance+350,
-                        fuelCapacity: car.fuelCapacity,
-                        pricePerHour: car.pricePerHour+30,
+                        model: '${widget.car.model} - 3',
+                        distance: widget.car.distance+350,
+                        fuelCapacity: widget.car.fuelCapacity,
+                        pricePerHour: widget.car.pricePerHour+30,
                       ),
                     ),
 

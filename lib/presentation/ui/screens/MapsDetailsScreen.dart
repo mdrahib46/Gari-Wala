@@ -15,22 +15,7 @@ class MapsDetailsScreen extends StatefulWidget {
 
 class _MapsDetailsScreenState extends State<MapsDetailsScreen> with TickerProviderStateMixin{
 
-  AnimationController? _animationController;
-  Animation<double>? _animation;
 
-  @override
-  void initState() {
-    _animationController = AnimationController(duration: Duration(seconds: 3), vsync: this);
-
-    _animation = Tween<double>(begin: 1.0, end: 1.5).animate(_animationController!)..addListener((){
-      setState(() {
-
-      });
-    });
-
-   _animationController?.forward();
-    super.initState();
-  }
 
 
   @override
