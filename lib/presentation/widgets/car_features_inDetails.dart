@@ -3,9 +3,7 @@ import 'package:gariwala/data/model/car_models.dart';
 import 'package:gariwala/presentation/widgets/features_icons.dart';
 
 class CarFeaturesInDetails extends StatelessWidget {
-  const CarFeaturesInDetails({
-    super.key, required this.car,
-  });
+  const CarFeaturesInDetails({super.key, required this.car});
 
   final Car car;
 
@@ -42,9 +40,7 @@ class CarFeaturesInDetails extends StatelessWidget {
               width: 120,
               child: ElevatedButton(
                 onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                 child: Text(
                   "Book Now",
                   style: TextStyle(color: Colors.white, wordSpacing: 0.9),
