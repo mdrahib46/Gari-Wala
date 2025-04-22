@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gariwala/injection_container.dart';
+import 'package:gariwala/presentation/ui/controller/car_bloc.dart';
+import 'package:gariwala/presentation/ui/controller/car_event.dart';
 import 'package:gariwala/presentation/ui/screens/onboarding_screen.dart';
 
 class GariWala extends StatelessWidget {
@@ -6,14 +10,17 @@ class GariWala extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: _textThemeData(),
-        appBarTheme: _appBarThemeData(),
-        elevatedButtonTheme: _elevatedButtonThemeData(),
+    return BlocProvider(
+      create: (_)=> getIt<CarBloc>()..add(LoadCars()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: _textThemeData(),
+          appBarTheme: _appBarThemeData(),
+          elevatedButtonTheme: _elevatedButtonThemeData(),
+        ),
+        home: OnboardingScreen(),
       ),
-      home: OnboardingScreen(),
     );
   }
 
@@ -56,3 +63,7 @@ class GariWala extends StatelessWidget {
     );
   }
 }
+
+
+
+

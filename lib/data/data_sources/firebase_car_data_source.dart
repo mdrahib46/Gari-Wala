@@ -4,7 +4,7 @@ import 'package:gariwala/data/model/car_models.dart';
 class FirebaseCarDataSource {
   final FirebaseFirestore firebaseFirestore;
 
-  FirebaseCarDataSource({required this.firebaseFirestore});
+  FirebaseCarDataSource( {required this.firebaseFirestore,});
 
   Future<List<Car>> getCars() async {
     var snapShot = await firebaseFirestore.collection('cars').get();
